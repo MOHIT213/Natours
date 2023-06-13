@@ -1,0 +1,7 @@
+Sass Commands: 
+    1. Compile Sass -> npm run compile:sass
+                       npm run compile:scss
+
+Live Server:
+    1. Install live server -> sudo npm install live-server -g
+    2. Run live-server -> live-server

@@ -1,0 +1,113 @@
+.btn{
+    &,
+    &:link,
+    &:visited {
+
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        /* For adding curve to button */
+        border-radius: 10rem;
+        /* For smooth animation */
+        transition: all .2s;
+        position: relative;
+        font-size: $default-font-size;
+
+        //Change for button element
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover{
+        transform: translateY(-0.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black,0.2);
+
+          /* defining after pseudo element only when btn is on hover */
+        &::after{
+            transform: scaleX(1.2) scaleY(1.4);
+            opacity: 0;
+        }
+    }
+    &:active,
+    &:focus{
+        outline: none;
+        transform: translateY(-0.1rem);
+                    /* X Y Blur Color */ 
+        box-shadow: 0 0.5rem 1rem rgba($color-black,0.2);
+    }
+
+    &--white{
+        background-color: $color-white;
+        color: $color-dark-grey;
+
+        &::after{
+            background-color: $color-white;
+        }
+    }
+
+    &--green{
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after{
+            background-color: $color-primary;
+        }
+    }
+
+    &::after{
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        /* For position absolute, the parent position needs to be relative. Since, we
+        want the parent to be the actual button, set its position to relative */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* z-index is to say if its on top or bottom. -1 means bottom. */
+        z-index: -1;
+        transition: .4s;
+    }
+
+    &--animated{
+        animation-name: moveInBottom;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-delay: .5s;
+        /* To apply styles before animation starts so that the button is not visible before animation */
+        animation-fill-mode: backwards;
+    }
+}
+
+.btn-text{
+
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none; //rid of underline
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+
+        //for effect time
+        transition: all .2sec;
+    }
+
+    &:hover{
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+        transform: translateY(-2px);
+    }
+
+    &:active{
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.15);
+        transform: translateY(0);
+    }
+
+    
+
+}

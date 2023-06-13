@@ -1,0 +1,80 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black,0.1);
+    background-color: rgba($color-white, 0.6); //to give transparent effect to the box only and not text.
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+
+    @include respond(tab-port){
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+    
+    @include respond(phone){
+        transform: skewX(0);
+    }
+    //for circle
+    &__shape{
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        //to make text wrap around circle
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+
+        //now make exact same circle using clip-path
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        transform: translateX(-3rem) skew(12deg);//to add some space between text and pic. Use transform when adding space for same element
+        position: relative;
+
+        @include respond(phone){
+            transform: translate(-3rem) skewX(0);
+        }
+    }
+
+    //for image
+    &__image{
+        height: 100%; //image is wider than height. Give 100% as image is inside shape. So should occupy all 15rem.
+        transform: translateX(-4rem) scale(1.4);
+        backface-visibility: hidden;
+        transition: all .5s;
+    }
+
+    &__text{
+        transform: skewX(12deg);
+
+        @include respond(phone){
+            transform: skewX(0);
+        }
+    }
+
+    &__caption{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: $default-font-size;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+        backface-visibility: hidden;
+    }
+    &:hover &__caption{
+        opacity: 1;
+        transform: translate(-50%,-50%);
+    }
+
+    &:hover &__image{
+        transform: translateX(-4rem) scale(1);
+        //for image blur
+        filter: blur(3px) brightness(80%);
+    }
+}
